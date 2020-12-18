@@ -1,9 +1,20 @@
 defmodule D1 do
 
   def run do
-    Input.read_file(1)
+    nums = Input.read_file(1)
     |> Enum.filter(&(&1 != ""))
     |> Enum.map(&(String.to_integer(&1)))
+
+    IO.inspect P1.run(nums)
+    IO.inspect P1v2.run(nums)
+    IO.inspect P2.run(nums)
+  end
+end
+
+defmodule P1 do
+
+  def run(nums) do
+    nums
     |> check
   end
 
@@ -28,4 +39,23 @@ defmodule D1 do
   defp check(a, b) when a + b == 2020, do: a * b
   defp check(a, b) when a + b != 2020, do: nil
 
+end
+
+
+defmodule P1v2 do
+
+  def run (nums) do
+    [a, b] = nums
+    |> Enum.filter(&(Enum.member?(nums, 2020 - &1)))
+
+    a * b
+  end
+end
+
+defmodule P2 do
+
+  def run(nums) do
+    [h|_] = for a <- nums, b <- nums, c <- nums, a + b + c == 2020, do: a * b * c
+    h
+  end
 end
