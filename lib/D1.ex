@@ -1,9 +1,7 @@
 defmodule D1 do
 
   def run do
-    "inputs/1.txt"
-    |> File.read!()
-    |> String.split("\n")
+    Input.read_file(1)
     |> Enum.filter(&(&1 != ""))
     |> Enum.map(&(String.to_integer(&1)))
     |> check

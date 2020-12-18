@@ -16,3 +16,10 @@ defmodule Aoc2020 do
     :world
   end
 end
+
+defmodule Input do
+  def read_file(day) do
+    File.read!("inputs/#{day}.txt")
+    |> String.split("\n")
+  end
+end
